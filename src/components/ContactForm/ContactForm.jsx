@@ -1,28 +1,22 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
-import { nanoid } from "nanoid";
-import { useId } from "react";
 import { useDispatch } from "react-redux";
-import { addContacts } from '../../redux/contactsSlice';
+import { addDataContacts } from '../../redux/contactsOps';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const nameFieldId = useId();
-  const numberFieldId = useId();
-
- 
 
   const submitForm = (values, actions) => {
     const contactData = {
-      id: nanoid(),
       name: values.name,
       number: values.number,
     };
-
-   dispatch(addContacts(contactData));
+    
+   dispatch(addDataContacts(contactData));
    actions.resetForm();
   };
+
 
   const feedbackSchema = Yup.object().shape({
     name: Yup.string().min(3).max(20).required("Required"), 
@@ -42,13 +36,13 @@ const ContactForm = () => {
         <Form className={s.form}>
           <div>
           <label className={s.label}>Name</label>         
-            <Field className={s.input} type="text" name="name" id={nameFieldId} style={{ padding: "8px 16px", borderRadius: 6 }}/>
+            <Field className={s.input} type="text" name="name" id="name" style={{ padding: "8px 16px", borderRadius: 6 }}/>
             <ErrorMessage name="name" className={s.error} component="div" />
           </div>
           
           <div>
           <label className={s.label}>Number</label>
-            <Field className={s.input} type="text" name="number" id={numberFieldId} style={{ padding: "8px 16px", borderRadius: 6 }}/>
+            <Field className={s.input} type="text" name="number" id="number" style={{ padding: "8px 16px", borderRadius: 6 }}/>
             <ErrorMessage name="number" className={s.error} component="div" />
             </div>
 

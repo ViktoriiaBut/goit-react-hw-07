@@ -2,14 +2,14 @@ import { HiUser } from "react-icons/hi2";
 import { FaPhoneAlt } from "react-icons/fa";
 import s from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContacts } from "../../redux/contactsSlice";
+import { deleteDataContacts } from "../../redux/contactsOps";
 import PropTypes from "prop-types";
 
 
 
 const Contact = ({ data }) => {
     const dispatch = useDispatch();
-    const handleDelete = () => dispatch(deleteContacts(data.id));
+    const handleDelete = () => dispatch(deleteDataContacts(data.id));
   
     return (
       <li className={s.list}>
@@ -39,3 +39,4 @@ const Contact = ({ data }) => {
   };
   
   export default Contact;
+
